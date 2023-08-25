@@ -1,6 +1,8 @@
 /*Website Background Color*/
 body {
     background-color: #C6CDFF;
+    overflow: hidden;
+    position: fixed;
 }
 
 * {
@@ -41,6 +43,14 @@ body {
     margin-bottom: 30px;
 }
 
+.wrapper .sidebar ul li.active {
+    background-color: #4e4e7e;
+}
+
+.wrapper .sidebar ul li.active a {
+    color: #fff;
+}
+
 .wrapper .sidebar ul li {
     padding: 15px;
     border-bottom: 1px solid #bdb8d7;
@@ -55,4 +65,17 @@ body {
 
 .wrapper .sidebar ul li a .fas {
     width: 25px;
+}
+
+.wrapper .sidebar ul li:hover {
+    background-color: #4e4e7e;
+}
+
+.wrapper .sidebar ul li:hover a {
+    color: #fff;
+}
+
+.wrapper .main_content {
+    width: 100%;
+    margin-left: 200px;
 }
