@@ -3,45 +3,12 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title></title>
+    <title>Home</title>
     <script src="https://kit.fontawesome.com/6a1c1e5161.js" crossorigin="anonymous"></script>
     <script src="app.js"></script>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    
-    <div class="wrapper">
-        <!-- This is the sidenav -->
-        <div class="sidebar">
-            <h1>SecureRise</h1>
-            <ul>
-            <li class="active"><a href="#"><i class="fa-solid fa-house"></i> Home</a></li>
-            <li><a href="#"><i class="fa-solid fa-bell"></i> Alarms</a></li>
-            <li><a href="#"><i class="fa-solid fa-gear"></i> Settings</a></li>
-            <li><a href="#"><i class="fa-solid fa-right-from-bracket"></i> Sign Out</a></li>
-            </ul>
-        </div>
-        <!-- This is the main content -->
-
-    </div>
+    <div class="wrapper"> </div>
 </body>
-
-<script>
-    // Set the initial active item when the page loads
-    window.onload = function() {
-        const defaultActiveItem = document.querySelector('.wrapper .sidebar ul li.active');
-        const allItems = document.querySelectorAll('.wrapper .sidebar ul li');
-
-        allItems.forEach(item => {
-            item.addEventListener('click', () => {
-                // Remove active class from all items
-                allItems.forEach(i => i.classList.remove('active'));
-                // Add active class to the clicked item
-                item.classList.add('active');
-            });
-        });
-
-        defaultActiveItem.classList.add('active');
-    };
-</script>
 </html>
