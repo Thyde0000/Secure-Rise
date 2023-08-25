@@ -1,7 +1,18 @@
+/*Website Background Color*/
 body {
     background-color: #C6CDFF;
 }
 
+* {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    text-decoration: none;
+    font-family: 'Roboto', sans-serif;
+    box-sizing: border-box;
+}
+
+/*Removes Highlight On Site Title*/
 .noselect {
     -webkit-touch-callout: none;
     -webkit-user-select: none;
@@ -11,61 +22,37 @@ body {
     user-select: none;
 }
 
-h1 {
+.wrapper {
+    display: flex;
+    position: relative;
+}
+
+.wrapper .sidebar {
+    position: fixed;
+    width: 200px;
+    height: 100%;
+    background: #60609c;
+    padding: 30px 0px;
+}
+
+.wrapper .sidebar h1 {
+    color: #bdb8d7;
     text-align: center;
-    font-size: 50px;
-    font-family: 'Roboto', sans-serif;
-    color: #2c3e50;
+    margin-bottom: 30px;
 }
 
-#navigationList {
-    list-style-type: none;
-    margin: 0;
-    padding: 0;
-    text-align: center;
-    font-size: 20px;
-    font-family: 'Roboto', sans-serif;
-    color: #2c3e50;
+.wrapper .sidebar ul li {
+    padding: 15px;
+    border-bottom: 1px solid #bdb8d7;
+    border-bottom: 1px solid rgba(0,0,0,0.05);
+    border-top: 1px solid rgba(255,255,255,0.05);
 }
 
-li a {
-    float: left;
-}
-
-li a {
+.wrapper .sidebar ul li a {
+    color: #bdb8d7;
     display: block;
-    color: #2c3e50;
-    padding: 8px 16px;
-    text-decoration: none;
 }
 
-#footer{
-    text-align: center;
-    font-size: 20px;
-    font-family: 'Roboto', sans-serif;
-    color: red;
-}
-
-#alarm1{
-    display: flex;
-    text-align: center;
-    font-size: 20px;
-    font-family: 'Roboto', sans-serif;
-    color: #2c3e50;
-}
-
-#alarm2{
-    display: flex;
-    text-align: center;
-    font-size: 20px;
-    font-family: 'Roboto', sans-serif;
-    color: #2c3e50;
-}
-
-#alarm3{
-    display: flex;
-    text-align: center;
-    font-size: 20px;
-    font-family: 'Roboto', sans-serif;
-    color: #2c3e50;
+.wrapper .sidebar ul li a .fas {
+    width: 25px;
 }
