@@ -14,9 +14,6 @@
         <!-- Side Navigation -->
     </div>
 
-    <div class="default">
-        <h1>You haven't created any alarms</h1>
-    </div>
 
     <div class="add-alarm">
         <button class="add-alarm-btn" onclick="addAlarm()">
@@ -28,5 +25,24 @@
         <!-- Alarms -->
     </div>
 
+    <form class="edit-alarm-form">
+        <!-- Input fields for alarm details -->
+        <label for="editedTitle">Title:</label>
+        <input type="text" id="editedTitle" name="editedTitle">
+    
+        <label for="editedTime">Time:</label>
+        <input type="time" id="editedTime" name="editedTime">
+    
+        <label for="editedEnabled">Enabled:</label>
+        <input type="checkbox" id="editedEnabled" name="editedEnabled">
+
+        <label for="editedSound">Sound:</label>
+        <input type="text" id="editedSound" name="editedSound">
+    
+        <button type="button" class="save-edited-alarm">Save</button>
+        <button type="button" class="cancel">Cancel</button>
+    </form>
+
+    
 </body>
 </html>
