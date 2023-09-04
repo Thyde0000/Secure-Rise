@@ -8,7 +8,7 @@ import org.springframework.scheduling.annotation.EnableScheduling;
 
 @EnableScheduling
 @SpringBootApplication
-public class RiseCallApplication {
+public class SecureRise {
 
     @Bean
     public ModelMapper modelMapper(){
@@ -16,7 +16,6 @@ public class RiseCallApplication {
     }
 
     public static void main(String[] args) {
-        SpringApplication.run(RiseCallApplication.class, args);
+        SpringApplication.run(SecureRise.class, args);
     }
-
 }

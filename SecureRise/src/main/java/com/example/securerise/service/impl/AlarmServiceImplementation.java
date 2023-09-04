@@ -14,6 +14,11 @@ import javax.sound.sampled.LineUnavailableException;
 import javax.sound.sampled.UnsupportedAudioFileException;
 
 import java.io.IOException;
+import java.time.LocalTime;
+import java.time.format.DateTimeFormatter;
+import java.util.Collection;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.List;
 
 @AllArgsConstructor
@@ -32,6 +37,14 @@ public class AlarmServiceImplementation implements AlarmService {
     @Override
     public List<AlarmDTO> getAlarms() {
         List<Alarm> alarmList = alarmRepository.findAll();
+        // Custom comparator to compare alarms by time
+        Comparator<Alarm> alarmComparator = (alarm1, alarm2) -> {
+            DateTimeFormatter timeFormatter = DateTimeFormatter.ofPattern("HH:mm");
+            LocalTime time1 = LocalTime.parse(alarm1.getStartingTime().toString(), timeFormatter);
+            LocalTime time2 = LocalTime.parse(alarm2.getStartingTime().toString(), timeFormatter);
+            return time1.compareTo(time2);
+        };
+        alarmList.sort(alarmComparator);
         return alarmList.stream().map(alarm -> modelMapper.map(alarm, AlarmDTO.class)).toList();
     }
 

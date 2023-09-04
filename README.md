@@ -24,9 +24,9 @@ Requirements
 > Required MySQL Server here: https://dev.mysql.com/downloads/
 
 
-Website Home
+Website V1
 ---
-**Work In Progress**
+<img width="1710" alt="Screenshot 2023-08-30 at 10 28 27 AM" src="https://github.com/Thyde0000/Secure-Rise/assets/42245338/65fabe71-95d7-4081-88d1-6b387f24f77a">
 
 
 application.properties
