@@ -50,7 +50,7 @@ body {
     margin: 20px;
 }
 
-.add-alarm .add-alarm-btn{
+.add-alarm .add-alarm-button{
     display: flex;
     align-items: center;
     justify-content: center;
@@ -66,7 +66,7 @@ body {
     cursor: pointer;
 }
 
-.add-alarm .add-alarm-btn:hover {
+.add-alarm .add-alarm-button:hover {
     background-color: #60609c;
     color: #ffffff;
 }
@@ -84,7 +84,7 @@ body {
     color: #ffffff;
     border-radius: 8px;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-    padding: 20px;
+    padding: 5px;
 }
 
 /* Styling for labels in the edit-alarm form */
@@ -96,8 +96,21 @@ body {
 .edit-alarm-form input[type="text"],
 .edit-alarm-form input[type="time"],
 .edit-alarm-form input[type="checkbox"] {
+    text-align: center;
     width: 100%;
     padding: 5px;
+    font-size: 15px;
+    font-weight: bold;
+    margin-bottom: 10px;
+    background-color: #bdb8d7;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+
+.edit-alarm-form input[type="time"] {
+    width: 100%;
+    padding-left: 37%;
+    font-weight: bold;
     margin-bottom: 10px;
     border: 1px solid #ccc;
     border-radius: 4px;
@@ -105,10 +118,13 @@ body {
 
 /* Styling for buttons in the edit-alarm form */
 .edit-alarm-form button {
-    display: inline-block;
-    padding: 10px 20px;
-    margin-right: 10px;
+    display: block;
+    width: 100%;
+    margin-bottom: 5px;
+    padding: 10px;
     background-color: #339e55;
+    font-weight: bold;
+    font-size: 15px;
     color: #fff;
     border: none;
     border-radius: 4px;
@@ -122,5 +138,132 @@ body {
 .edit-alarm-form input[type="checkbox"] {
     width: 20px;
     height: 20px;
-    margin-left: 10px;
+}
+
+.add-alarm-form {
+    display: none;
+    flex-direction: column;
+    width: 300px;
+    height: 320px;
+    align-items: center;
+    justify-content: center;
+    margin-left: 820px;
+    margin-top: 20px;
+    background: #60609c;
+    color: #ffffff;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    padding: 5px;
+}
+
+/* Styling for labels in the add-alarm form */
+.add-alarm-form label {
+    font-weight: bold;
+}
+
+/* Styling for inputs in the add-alarm form */
+.add-alarm-form input[type="text"],
+.add-alarm-form input[type="time"],
+.add-alarm-form input[type="checkbox"] {
+    text-align: center;
+    width: 100%;
+    padding: 5px;
+    font-size: 15px;
+    font-weight: bold;
+    margin-bottom: 10px;
+    background-color: #bdb8d7;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+
+.add-alarm-form input[type="time"] {
+    width: 100%;
+    padding-left: 37%;
+    font-weight: bold;
+    margin-bottom: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+
+/* Styling for buttons in the add-alarm form */
+.add-alarm-form button {
+    display: block;
+    width: 100%;
+    margin-bottom: 5px;
+    padding: 10px;
+    background-color: #339e55;
+    font-weight: bold;
+    font-size: 15px;
+    color: #fff;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+.add-alarm-form button.cancel {
+    background-color: #c71d1d;
+}
+
+.add-alarm-form input[type="checkbox"] {
+    width: 20px;
+    height: 20px;
+}
+
+.turn-off-alarm-prompt {
+    display: none;
+    flex-direction: column;
+    width: 420px;
+    height: 320px;
+    align-items: center;
+    justify-content: center;
+    margin-left: 700px;
+    margin-top: 20px;
+    background: #60609c;
+    color: #ffffff;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    padding: 5px;
+}
+
+.turn-off-alarm-prompt button {
+    display: block;
+    width: 100%;
+    margin-bottom: 5px;
+    padding: 10px;
+    background-color: #c71d1d;
+    font-weight: bold;
+    font-size: 15px;
+    color: #fff;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+.turn-off-alarm-prompt input[type="text"] {
+    text-align: center;
+    width: 100%;
+    padding: 5px;
+    font-size: 15px;
+    font-weight: bold;
+    margin-bottom: 10px;
+    background-color: #bdb8d7;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+
+.turn-off-alarm-prompt #prompt {
+    display: flex;
+    align-items: center;
+    font-weight: bold;
+    margin-bottom: 40px;
+}
+
+.turn-off-alarm-prompt .turn-off-alarm-string{
+    display: flex;
+    align-items: center;
+    font-weight: bold;
+}
+
+.turn-off-alarm-string {
+    user-select: none;
 }

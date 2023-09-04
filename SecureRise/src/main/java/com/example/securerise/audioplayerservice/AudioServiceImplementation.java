@@ -11,7 +11,7 @@ public class AudioServiceImplementation implements AudioService{
 
     private Clip currentClip;
     public void playAlarmSound(String path) throws UnsupportedAudioFileException, IOException, LineUnavailableException {
-        File file = new File(path);
+        File file = new File("/Users/erastojrdamian/Desktop/Secure-Rise/SecureRise/" + path);
         AudioInputStream audioStream = AudioSystem.getAudioInputStream(file);
         currentClip = AudioSystem.getClip();
         currentClip.open(audioStream);
