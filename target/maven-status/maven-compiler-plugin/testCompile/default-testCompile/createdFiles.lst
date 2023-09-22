@@ -1,0 +1,4 @@
+com/example/securerise/SecureRiseTests.class
+com/example/securerise/service/impl/AlarmServiceImplementationTest.class
+com/example/securerise/controller/AlarmControllerTest.class
+com/example/securerise/dto/AlarmDTOTest.class

@@ -1,0 +1,25 @@
+/*Website Background Color*/
+body {
+    background-color: #C6CDFF;
+    overflow: hidden;
+    position: fixed;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    text-decoration: none;
+    font-family: 'Roboto', sans-serif;
+    box-sizing: border-box;
+}
+
+/*Removes Highlight On Site Title*/
+.noselect {
+    -webkit-touch-callout: none;
+    -webkit-user-select: none;
+    -khtml-user-select: none; 
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}

@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Alarms</title>
+    <script src="https://kit.fontawesome.com/6a1c1e5161.js" crossorigin="anonymous"></script>
+    <script src="navigation.js"></script>
+    <script src="alarms.js"></script>
+    <link rel="stylesheet" href="alarms.css">
+</head>
+<body>
+    <div class="wrapper">
+        <!-- Side Navigation -->
+    </div>
+
+
+    <div class="add-alarm">
+        <button class="add-alarm-btn" onclick="addAlarm()">
+            <i class="fas fa-plus"></i>
+        </button>
+    </div>
+
+    <div class="alarms-container">
+        <!-- Alarms -->
+    </div>
+
+    <form class="edit-alarm-form">
+        <!-- Input fields for alarm details -->
+        <label for="editedTitle">Title:</label>
+        <input type="text" id="editedTitle" name="editedTitle">
+    
+        <label for="editedTime">Time:</label>
+        <input type="time" id="editedTime" name="editedTime">
+    
+        <label for="editedEnabled">Enabled:</label>
+        <input type="checkbox" id="editedEnabled" name="editedEnabled">
+
+        <label for="editedSound">Sound:</label>
+        <input type="text" id="editedSound" name="editedSound">
+    
+        <button type="button" class="save-edited-alarm">Save</button>
+        <button type="button" class="cancel">Cancel</button>
+    </form>
+
+    
+</body>
+</html>
