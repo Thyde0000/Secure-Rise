@@ -1,3 +1,5 @@
+let alarmIsActive = false;
+
 //Get Alarms from Backend API
 document.addEventListener('DOMContentLoaded', function() {
     //Select Alarm Container
@@ -227,6 +229,11 @@ function checkAlarmTimes(){
                 //If Alarm Time Matches Current Time and Alarm is Enabled and Alarm is Not Playing Sound, Play Alarm
                 if(formattedTime === alarmString && alarm.enabled === true && alarm.playingSound === false){
                     playAlarm(alarm);
+                    alarmIsActive = true;
+
+                }
+                else if(formattedTime == alarmString && alarmIsActive == true){
+                    addToQueue(alarm);
                 }
                 //If Alarm Time Matches Current Time and Alarm is Enabled and Alarm is Playing Sound, SHOW FORM (IN PROGRESS)
             });
@@ -240,6 +247,34 @@ setInterval(checkAlarmTimes, 30000);
 function generateRandomString(countOfCharacters){
     const randomString = Math.random().toString(36).substring(2, countOfCharacters);
     return randomString;
+}
+
+function addToQueue(alarm){
+    const headers = new Headers();
+    headers.set('Authorization','Basic' + btoa('user:user'));
+    fetch('http://localhost:8080/api/alarm/queue/${alarm.id}',{
+        method: 'PATCH',
+        Headers: headers,
+        credentials: 'include'
+    })
+    .then(response =>{
+        if(response.status == 200){
+            console.log('Queued Alarm');
+        }
+    })
+}
+
+//FINISH TO CHECK IF ALARMS ARE QUEUED TO BE PLAYED NEXT
+function peekQueue(){
+    const headers = new Headers();
+    headers.set('Authorization', 'Basic' + btoa('user:user'));
+    fetch('http://localhost:8080/api/alarm/queue',{
+        method: 'GET',
+        headers: headers,
+        credentials: 'include'
+    })
+    .then(res => res.json())
+    .then(data)
 }
 
 //Play Alarm with Backend API Call
