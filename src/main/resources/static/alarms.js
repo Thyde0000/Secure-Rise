@@ -363,3 +363,4 @@ function convertToMilitaryTime(standardTime) {
     const [hours, minutes] = time.split(':');
     let militaryHours = hours;
 }
+//Test
