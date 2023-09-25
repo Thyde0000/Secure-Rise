@@ -92,7 +92,7 @@ document.addEventListener('DOMContentLoaded', function() {
 //Add Alarms to DOM with addAlarmForm
 document.addEventListener('DOMContentLoaded', function() {
     //Select Add Alarm Button
-    const addAlarmButton = document.querySelector('.add-alarm-btn');
+    const addAlarmButton = document.querySelector('.add-alarm-button');
     //Select Add Alarm Form
     const addAlarmForm = document.querySelector('.edit-alarm-form');
 
@@ -109,14 +109,14 @@ document.addEventListener('DOMContentLoaded', function() {
         addAlarmForm.newEnabled.checked = false;
     });
     //When User Clicks Save
-    addAlarmForm.querySelector('.save-edited-alarm').addEventListener('click', () => {
+    addAlarmForm.querySelector('.save').addEventListener('click', () => {
         //Create Alarm Entity with Form Data
         const newAlarm = {
-            alarmName: addAlarmForm.editedTitle.value,
-            startingTime: addAlarmForm.editedTime.value,
-            alarmSound: addAlarmForm.editedSound.value,
+            alarmName: addAlarmForm.newTitle.value,
+            startingTime: addAlarmForm.newTime.value,
+            alarmSound: addAlarmForm.newSound.value,
             playingSound: false,
-            enabled: addAlarmForm.editedEnabled.checked
+            enabled: addAlarmForm.newEnabled.checked
         };
         //Call addAlarm Method with API Call Request, Alarm Entity, and Reload Page if Successful
         addAlarm(newAlarm, () => {
