@@ -15,6 +15,12 @@ public interface AlarmService {
     List<AlarmDTO> getAlarms();
     AlarmDTO setAlarm(AlarmDTO alarmDTO);
 
+    AlarmDTO peekQueue();
+
+    String queueAlarm(Long id);
+
+    String deQueueAlarm() throws UnsupportedAudioFileException, LineUnavailableException, IOException;
+
     String deleteAlarm(Long id);
 
     AlarmDTO editAlarm(Long id, AlarmDTO alarmDTO);

@@ -74,4 +74,22 @@ public class AlarmController {
         String response = alarmService.stopAlarm(id);
         return new ResponseEntity<>(response, HttpStatus.OK);
     }
+
+    @PatchMapping("queue/{id}")
+    public ResponseEntity<String> queueAlarm(@PathVariable Long id){
+        String response = alarmService.queueAlarm(id);
+        return new ResponseEntity<>(response, HttpStatus.OK);
+    }
+
+    @PatchMapping("dequeue/")
+    public ResponseEntity<String> dequeueAlarm() throws UnsupportedAudioFileException, LineUnavailableException, IOException {
+        String response = alarmService.deQueueAlarm();
+        return new ResponseEntity<>(response,HttpStatus.OK);
+    }
+
+    @GetMapping("queue")
+    public ResponseEntity<AlarmDTO> peekQueue(){
+        AlarmDTO nextAlarm = alarmService.peekQueue();
+        return new ResponseEntity<>(nextAlarm, HttpStatus.OK);
+    }
 }

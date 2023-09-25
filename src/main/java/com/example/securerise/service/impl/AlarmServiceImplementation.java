@@ -8,6 +8,8 @@ import com.example.securerise.repository.AlarmRepository;
 import com.example.securerise.service.AlarmService;
 import lombok.AllArgsConstructor;
 import org.modelmapper.ModelMapper;
+import org.springframework.context.annotation.Bean;
+import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Service;
 
 import javax.sound.sampled.LineUnavailableException;
@@ -16,10 +18,7 @@ import javax.sound.sampled.UnsupportedAudioFileException;
 import java.io.IOException;
 import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
-import java.util.Collection;
-import java.util.Collections;
-import java.util.Comparator;
-import java.util.List;
+import java.util.*;
 
 @AllArgsConstructor
 @Service
@@ -27,6 +26,7 @@ public class AlarmServiceImplementation implements AlarmService {
     private AlarmRepository alarmRepository;
     private AudioService audioService;
     private ModelMapper modelMapper;
+    private Queue<AlarmDTO> queue;
 
     @Override
     public AlarmDTO getAlarm(Long id) {
@@ -54,6 +54,27 @@ public class AlarmServiceImplementation implements AlarmService {
         alarm.setEnabled(true);
         Alarm savedAlarm = alarmRepository.save(alarm);
         return modelMapper.map(savedAlarm, AlarmDTO.class);
+    }
+
+    @Override
+    public AlarmDTO peekQueue() {
+        return queue.peek();
+    }
+
+    @Override
+    public String queueAlarm(Long id) {
+        Alarm alarm = alarmRepository.findById(id).orElseThrow(() -> new ResourceNotFoundException("Alarm","id",id));
+        AlarmDTO alarmDTO = modelMapper.map(alarm,AlarmDTO.class);
+        queue.offer(alarmDTO);
+        return "Queued Alarm";
+    }
+
+    @Override
+    public String deQueueAlarm() throws UnsupportedAudioFileException, LineUnavailableException, IOException {
+        AlarmDTO alarm = queue.poll();
+        assert alarm != null;
+        playAlarm(alarm.getId());
+        return "Playing Alarm";
     }
 
     @Override
