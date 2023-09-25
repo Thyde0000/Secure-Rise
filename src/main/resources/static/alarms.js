@@ -83,6 +83,66 @@ document.addEventListener('DOMContentLoaded', function() {
     .catch(error => console.error('Error:', error));
 });
 
+//Add Alarms to DOM with addAlarmForm
+document.addEventListener('DOMContentLoaded', function() {
+    //Select Add Alarm Button
+    const addAlarmButton = document.querySelector('.add-alarm-button');
+    //Select Add Alarm Form
+    const addAlarmForm = document.querySelector('.add-alarm-form');
+
+    //When User Clicks Add Alarm Button, Show Add Alarm Form
+    addAlarmButton.addEventListener('click', () => {
+        addAlarmForm.style.display = 'flex';
+    });
+    //When User Clicks Cancel, Hide Add Alarm Form and Clear Form Data
+    addAlarmForm.querySelector('.cancel').addEventListener('click', () => {
+        addAlarmForm.style.display = 'none';
+        addAlarmForm.newTitle.value = '';
+        addAlarmForm.newTime.value = '';
+        addAlarmForm.newSound.value = '';
+        addAlarmForm.newEnabled.checked = false;
+    });
+    //When User Clicks Save
+    addAlarmForm.querySelector('.save').addEventListener('click', () => {
+        //Create Alarm Entity with Form Data
+        const newAlarm = {
+            alarmName: addAlarmForm.newTitle.value,
+            startingTime: addAlarmForm.newTime.value,
+            alarmSound: addAlarmForm.newSound.value,
+            playingSound: false,
+            enabled: addAlarmForm.newEnabled.checked
+        };
+        //Call addAlarm Method with API Call Request, Alarm Entity, and Reload Page if Successful
+        addAlarm(newAlarm, () => {
+            window.location.reload();
+        });
+    });
+});
+
+//Add Alarm with Backend API Call
+function addAlarm(alarm, callback) {
+    const headers = new Headers();
+    headers.set('Authorization', 'Basic ' + btoa('user:user'));
+    headers.set('Content-Type', 'application/json');
+    fetch('http://localhost:8080/api/alarm', {
+        method: 'POST',
+        headers: headers,
+        credentials: 'include',
+        body: JSON.stringify(alarm)
+    })
+        .then(response => {
+            if (response.status === 201) {
+                // Alarm added successfully, reload the page
+                if(callback && typeof callback === 'function') {
+                    callback();
+                }
+            }
+            else{
+                console.log('Error adding alarm:', response.status);
+            }
+        });
+}
+
 //Edit Alarm with Backend API Call
 function editAlarm(id, alarm, callback) {
     const headers = new Headers();
@@ -107,6 +167,7 @@ function editAlarm(id, alarm, callback) {
     })
     .catch(error => console.error('Error editing alarm:', error));
 }
+
 
 
 
