@@ -9,7 +9,7 @@ document.addEventListener('DOMContentLoaded', function() {
     const headers = new Headers();
     headers.set('Authorization', 'Basic ' + btoa('user:user'));
     //GET All Alarms From BACKEND API
-    fetch('http://localhost:8080/api/alarm', {
+    fetch('http://192.168.0.178:8080/api/alarm', {
         method: 'GET',
         headers: headers,
         credentials: 'include'
@@ -92,9 +92,9 @@ document.addEventListener('DOMContentLoaded', function() {
 //Add Alarms to DOM with addAlarmForm
 document.addEventListener('DOMContentLoaded', function() {
     //Select Add Alarm Button
-    const addAlarmButton = document.querySelector('.add-alarm-button');
+    const addAlarmButton = document.querySelector('.add-alarm-btn');
     //Select Add Alarm Form
-    const addAlarmForm = document.querySelector('.add-alarm-form');
+    const addAlarmForm = document.querySelector('.edit-alarm-form');
 
     //When User Clicks Add Alarm Button, Show Add Alarm Form
     addAlarmButton.addEventListener('click', () => {
@@ -109,14 +109,14 @@ document.addEventListener('DOMContentLoaded', function() {
         addAlarmForm.newEnabled.checked = false;
     });
     //When User Clicks Save
-    addAlarmForm.querySelector('.save').addEventListener('click', () => {
+    addAlarmForm.querySelector('.save-edited-alarm').addEventListener('click', () => {
         //Create Alarm Entity with Form Data
         const newAlarm = {
-            alarmName: addAlarmForm.newTitle.value,
-            startingTime: addAlarmForm.newTime.value,
-            alarmSound: addAlarmForm.newSound.value,
+            alarmName: addAlarmForm.editedTitle.value,
+            startingTime: addAlarmForm.editedTime.value,
+            alarmSound: addAlarmForm.editedSound.value,
             playingSound: false,
-            enabled: addAlarmForm.newEnabled.checked
+            enabled: addAlarmForm.editedEnabled.checked
         };
         //Call addAlarm Method with API Call Request, Alarm Entity, and Reload Page if Successful
         addAlarm(newAlarm, () => {
@@ -131,7 +131,7 @@ function editAlarm(id, alarm, callback) {
     const headers = new Headers();
     headers.set('Authorization', 'Basic ' + btoa('user:user'));
     headers.set('Content-Type', 'application/json');
-    fetch(`http://localhost:8080/api/alarm/${id}`, {
+    fetch(`http://192.168.0.178/api/alarm/${id}`, {
         method: 'PUT',
         headers: headers,
         credentials: 'include',
@@ -157,7 +157,7 @@ function addAlarm(alarm, callback) {
     const headers = new Headers();
     headers.set('Authorization', 'Basic ' + btoa('user:user'));
     headers.set('Content-Type', 'application/json');
-    fetch('http://localhost:8080/api/alarm', {
+    fetch('http://192.168.0.178/api/alarm', {
         method: 'POST',
         headers: headers,
         credentials: 'include',
@@ -181,7 +181,7 @@ function addAlarm(alarm, callback) {
 function deleteAlarm(id, callback) {
     const headers = new Headers();
     headers.set('Authorization', 'Basic ' + btoa('user:user'));
-    fetch(`http://localhost:8080/api/alarm/${id}`, {
+    fetch(`http://192.168.0.178/api/alarm/${id}`, {
         method: 'DELETE',
         headers: headers,
         credentials: 'include'
@@ -214,7 +214,7 @@ function checkAlarmTimes(){
     //Get Alarms from Backend API
     const headers = new Headers();
     headers.set('Authorization', 'Basic ' + btoa('user:user'));
-    fetch('http://localhost:8080/api/alarm', {
+    fetch('http://192.168.0.178/api/alarm', {
         method: 'GET',
         headers: headers,
         credentials: 'include'
@@ -252,7 +252,7 @@ function generateRandomString(countOfCharacters){
 function addToQueue(alarm){
     const headers = new Headers();
     headers.set('Authorization','Basic' + btoa('user:user'));
-    fetch('http://localhost:8080/api/alarm/queue/${alarm.id}',{
+    fetch('http://192.168.0.178/api/alarm/queue/${alarm.id}',{
         method: 'PATCH',
         Headers: headers,
         credentials: 'include'
@@ -269,7 +269,7 @@ function addToQueue(alarm){
 function playAlarm(alarm){
     const headers = new Headers();
     headers.set('Authorization', 'Basic ' + btoa('user:user'));
-    fetch(`http://localhost:8080/api/alarm/play/${alarm.id}`, {
+    fetch(`http://192.168.0.178/api/alarm/play/${alarm.id}`, {
         method: 'PATCH',
         headers: headers,
         credentials: 'include'
@@ -324,7 +324,7 @@ function playAlarm(alarm){
 function stopAlarm(id, callback) {
     const headers = new Headers();
     headers.set('Authorization', 'Basic ' + btoa('user:user'));
-    fetch(`http://localhost:8080/api/alarm/stop/${id}`, {
+    fetch(`http://192.168.0.178/api/alarm/stop/${id}`, {
         method: 'PATCH',
         headers: headers,
         credentials: 'include'
