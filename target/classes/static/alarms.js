@@ -7,7 +7,7 @@ document.addEventListener('DOMContentLoaded', function() {
     const headers = new Headers();
     headers.set('Authorization', 'Basic ' + btoa('user:user'));
     //GET Alarms From BACKEND API
-    fetch('http://localhost:8080/api/alarm', {
+    fetch('http://192.168.0.178:8080/api/alarm', {
         method: 'GET',
         headers: headers,
         credentials: 'include'
@@ -88,7 +88,7 @@ function editAlarm(id, alarm, callback) {
     const headers = new Headers();
     headers.set('Authorization', 'Basic ' + btoa('user:user'));
     headers.set('Content-Type', 'application/json');
-    fetch(`http://localhost:8080/api/alarm/${id}`, {
+    fetch(`http://192.168.0.178:8080/api/alarm/${id}`, {
         method: 'PUT',
         headers: headers,
         credentials: 'include',
@@ -114,7 +114,7 @@ function editAlarm(id, alarm, callback) {
 function deleteAlarm(id, callback) {
     const headers = new Headers();
     headers.set('Authorization', 'Basic ' + btoa('user:user'));
-    fetch(`http://localhost:8080/api/alarm/${id}`, {
+    fetch(`http://192.168.0.178:8080/api/alarm/${id}`, {
         method: 'DELETE',
         headers: headers,
         credentials: 'include'

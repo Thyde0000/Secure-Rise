@@ -43,8 +43,8 @@ public class SpringSecurityConfig implements WebMvcConfigurer {
     }
 
     public void addCorsMappings(CorsRegistry registry) {
-        registry.addMapping("/api/**")
-                .allowedOriginPatterns(firstOriginPattern, secondOriginPattern)
+        registry.addMapping("/**")
+                .allowedOriginPatterns("*")
                 .allowedMethods("GET", "POST", "PUT", "DELETE", "OPTIONS", "HEAD", "TRACE", "CONNECT")
                 .allowedHeaders("Authorization", "Content-Type")
                 .allowCredentials(true)
