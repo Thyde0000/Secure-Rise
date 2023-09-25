@@ -94,7 +94,7 @@ document.addEventListener('DOMContentLoaded', function() {
     //Select Add Alarm Button
     const addAlarmButton = document.querySelector('.add-alarm-button');
     //Select Add Alarm Form
-    const addAlarmForm = document.querySelector('.edit-alarm-form');
+    const addAlarmForm = document.querySelector('.add-alarm-form');
 
     //When User Clicks Add Alarm Button, Show Add Alarm Form
     addAlarmButton.addEventListener('click', () => {
