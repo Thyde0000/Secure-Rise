@@ -5,43 +5,72 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Alarms</title>
     <script src="https://kit.fontawesome.com/6a1c1e5161.js" crossorigin="anonymous"></script>
+    <script src="navigation.js"></script>
+    <script src="alarms.js"></script>
     <link rel="stylesheet" href="alarms.css">
 </head>
 <body>
-    <div class="wrapper">
-        <!-- Side Navigation -->
-    </div>
+<div class="wrapper">
+    <!-- Side Navigation -->
+</div>
 
 
-    <div class="add-alarm">
-        <button class="add-alarm-btn">
-            <i class="fas fa-plus"></i>
-        </button>
-    </div>
+<!-- Add Alarm Button -->
+<div class="add-alarm">
+    <button class="add-alarm-button">
+        <i class="fas fa-plus"></i>
+    </button>
+</div>
 
-    <div class="alarms-container">
-        <!-- Alarms -->
-    </div>
+<div class="alarms-container">
+    <!-- All Alarms -->
+</div>
 
-    <form class="edit-alarm-form">
-        <!-- Input fields for alarm details -->
-        <label for="editedTitle">Title:</label>
-        <input type="text" id="editedTitle" name="editedTitle">
-    
-        <label for="editedTime">Time:</label>
-        <input type="time" id="editedTime" name="editedTime">
-    
-        <label for="editedEnabled">Enabled:</label>
-        <input type="checkbox" id="editedEnabled" name="editedEnabled">
+<!-- Add Alarm Form (After Add Alarm Button) -->
+<form class="add-alarm-form">
+    <!-- Input fields for alarm details -->
+    <label for="newTitle">Title:</label>
+    <input type="text" id="newTitle" name="newTitle">
 
-        <label for="editedSound">Sound:</label>
-        <input type="text" id="editedSound" name="editedSound">
-    
-        <button type="button" class="save-edited-alarm">Save</button>
-        <button type="button" class="cancel">Cancel</button>
-    </form>
+    <label for="newTime">Time:</label>
+    <input type="time" id="newTime" name="newTime">
 
-    <script src="navigation.js"></script>
-    <script src="alarms.js"></script>
+    <label for="newEnabled">Enabled:</label>
+    <input type="checkbox" id="newEnabled" name="newEnabled">
+
+    <label for="newSound">Sound:</label>
+    <input type="text" id="newSound" name="newSound">
+
+    <button type="button" class="save">Save</button>
+    <button type="button" class="cancel">Cancel</button>
+</form>
+
+<!-- Edit Alarm Form (After Edit Alarm Button) -->
+<form class="edit-alarm-form">
+    <!-- Input fields for alarm details -->
+    <label for="editedTitle">Title:</label>
+    <input type="text" id="editedTitle" name="editedTitle">
+
+    <label for="editedTime">Time:</label>
+    <input type="time" id="editedTime" name="editedTime">
+
+    <label for="editedEnabled">Enabled:</label>
+    <input type="checkbox" id="editedEnabled" name="editedEnabled">
+
+    <label for="editedSound">Sound:</label>
+    <input type="text" id="editedSound" name="editedSound">
+
+    <button type="button" class="save">Save</button>
+    <button type="button" class="cancel">Cancel</button>
+</form>
+
+<!-- Prompt To Turn Off Alarm (Appears when Alarm Starts To Ring) -->
+<form class="turn-off-alarm-prompt">
+    <p id="prompt">Type the String To Turn Off Alarm</p>
+    <p class="turn-off-alarm-string"></p>
+    <input type="text" class="turn-off-alarm-input" name="turn-off-alarm-input">
+    <button type="button" class="turn-off-alarm">Turn Off Alarm</button>
+</form>
+
 </body>
 </html>
