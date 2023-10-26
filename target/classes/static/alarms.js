@@ -225,17 +225,12 @@ function checkAlarmTimes(){
             data.forEach(alarm => {
                 //Get Each Alarm Time From DB and Format to Match Current Time Format
                 const alarmTime = alarm.startingTime;
-                console.log(alarmTime)
                 const alarmString = alarmTime.toString();
-                console.log(alarmTime);
-                console.log(formattedTime);
                 //If Alarm Time Matches Current Time and Alarm is Enabled and Alarm is Not Playing Sound, Play Alarm
                 if(formattedTime === alarmString && alarm.enabled === true && alarm.playingSound === false){
                     playAlarm(alarm);
                     alarmIsActive = true;
-
                 }
-                //If Alarm Time Matches Current Time and Alarm is Enabled and Alarm is Playing Sound, SHOW FORM (IN PROGRESS)
             });
         }
     });
@@ -253,7 +248,7 @@ function generateRandomString(countOfCharacters){
 function playAlarm(alarm){
     const headers = new Headers();
     headers.set('Authorization', 'Basic ' + btoa('user:user'));
-    fetch(`http://localhost:8080/api/alarm/play/${alarm.id}`, {
+    fetch(`http://192.168.0.178:8080/api/alarm/play/${alarm.id}`, {
         method: 'PATCH',
         headers: headers,
         credentials: 'include'
@@ -284,7 +279,7 @@ function playAlarm(alarm){
                 //If User Input Matches Random String, Stop Alarm
                 if(turnOffAlarmPrompt.querySelector('.turn-off-alarm-input').value === newRandomString){
                     stopAlarm(alarm.id, () => {
-                        window.location.reload();
+                        
                     });
                 }
                 //Else, Display Incorrect String Message & Generate New Random String
@@ -300,7 +295,7 @@ function playAlarm(alarm){
             });
         }
         else{
-            console.log('Error editing alarm:', response.status);
+            console.log('Error:', response.status);
         }
     });
 }
