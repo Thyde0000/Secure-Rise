@@ -253,7 +253,7 @@ function generateRandomString(countOfCharacters){
 function playAlarm(alarm){
     const headers = new Headers();
     headers.set('Authorization', 'Basic ' + btoa('user:user'));
-    fetch(`http://localhost:8080/api/alarm/play/${alarm.id}`, {
+    fetch(`http://192.168.0.178:8080/api/alarm/play/${alarm.id}`, {
         method: 'PATCH',
         headers: headers,
         credentials: 'include'
