@@ -92,9 +92,9 @@ document.addEventListener('DOMContentLoaded', function() {
 //Add Alarms to DOM with addAlarmForm
 document.addEventListener('DOMContentLoaded', function() {
     //Select Add Alarm Button
-    const addAlarmButton = document.querySelector('.add-alarm-btn');
+    const addAlarmButton = document.querySelector('.add-alarm-button');
     //Select Add Alarm Form
-    const addAlarmForm = document.querySelector('.edit-alarm-form');
+    const addAlarmForm = document.querySelector('.add-alarm-form');
 
     //When User Clicks Add Alarm Button, Show Add Alarm Form
     addAlarmButton.addEventListener('click', () => {
@@ -109,14 +109,14 @@ document.addEventListener('DOMContentLoaded', function() {
         addAlarmForm.newEnabled.checked = false;
     });
     //When User Clicks Save
-    addAlarmForm.querySelector('.save-edited-alarm').addEventListener('click', () => {
+    addAlarmForm.querySelector('.save').addEventListener('click', () => {
         //Create Alarm Entity with Form Data
         const newAlarm = {
-            alarmName: addAlarmForm.editedTitle.value,
-            startingTime: addAlarmForm.editedTime.value,
-            alarmSound: addAlarmForm.editedSound.value,
+            alarmName: addAlarmForm.querySelector('#newTitle').value,
+            startingTime: addAlarmForm.querySelector('#newTime').value,
+            alarmSound: addAlarmForm.querySelector('#newSound').value,
             playingSound: false,
-            enabled: addAlarmForm.editedEnabled.checked
+            enabled: addAlarmForm.querySelector('#newEnabled').checked
         };
         //Call addAlarm Method with API Call Request, Alarm Entity, and Reload Page if Successful
         addAlarm(newAlarm, () => {
@@ -225,15 +225,15 @@ function checkAlarmTimes(){
             data.forEach(alarm => {
                 //Get Each Alarm Time From DB and Format to Match Current Time Format
                 const alarmTime = alarm.startingTime;
+                console.log(alarmTime)
                 const alarmString = alarmTime.toString();
+                console.log(alarmTime);
+                console.log(formattedTime);
                 //If Alarm Time Matches Current Time and Alarm is Enabled and Alarm is Not Playing Sound, Play Alarm
                 if(formattedTime === alarmString && alarm.enabled === true && alarm.playingSound === false){
                     playAlarm(alarm);
                     alarmIsActive = true;
 
-                }
-                else if(formattedTime == alarmString && alarmIsActive == true){
-                    addToQueue(alarm);
                 }
                 //If Alarm Time Matches Current Time and Alarm is Enabled and Alarm is Playing Sound, SHOW FORM (IN PROGRESS)
             });
@@ -241,7 +241,7 @@ function checkAlarmTimes(){
     });
 }
 //Call checkAlarmTimes Every 30 Seconds
-setInterval(checkAlarmTimes, 30000);
+setInterval(checkAlarmTimes, 10000); //30,000
 
 //Generate Random String to Stop Alarm
 function generateRandomString(countOfCharacters){
@@ -249,27 +249,11 @@ function generateRandomString(countOfCharacters){
     return randomString;
 }
 
-function addToQueue(alarm){
-    const headers = new Headers();
-    headers.set('Authorization','Basic' + btoa('user:user'));
-    fetch('http://192.168.0.178:8080/api/alarm/queue/${alarm.id}',{
-        method: 'PATCH',
-        Headers: headers,
-        credentials: 'include'
-    })
-    .then(response =>{
-        if(response.status == 200){
-            console.log('Queued Alarm');
-        }
-    })
-}
-
-
 //Play Alarm with Backend API Call
 function playAlarm(alarm){
     const headers = new Headers();
     headers.set('Authorization', 'Basic ' + btoa('user:user'));
-    fetch(`http://192.168.0.178:8080/api/alarm/play/${alarm.id}`, {
+    fetch(`http://localhost:8080/api/alarm/play/${alarm.id}`, {
         method: 'PATCH',
         headers: headers,
         credentials: 'include'
@@ -280,6 +264,9 @@ function playAlarm(alarm){
             let newRandomString = '';
             // Alarm playing successfully
             const turnOffAlarmPrompt = document.querySelector('.turn-off-alarm-prompt');
+            //Show Prompt
+            turnOffAlarmPrompt.style.display = 'flex';
+            console.log("Showing the Turn Off Prompt")
             //Random String to Stop Alarm
             const turnOffAlarmStringElement = turnOffAlarmPrompt.querySelector('.turn-off-alarm-string');
             //Message to User
@@ -292,8 +279,6 @@ function playAlarm(alarm){
             turnOffAlarmStringElement.addEventListener('contextmenu', function (e) {
                 e.preventDefault();
             });
-            //Show Prompt
-            turnOffAlarmPrompt.style.display = 'flex';
             //When User Clicks Turn Off Alarm Button
             turnOffAlarmPrompt.querySelector('.turn-off-alarm').addEventListener('click', () => {
                 //If User Input Matches Random String, Stop Alarm
@@ -363,4 +348,3 @@ function convertToMilitaryTime(standardTime) {
     const [hours, minutes] = time.split(':');
     let militaryHours = hours;
 }
-//Test
